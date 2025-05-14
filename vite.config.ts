@@ -4,13 +4,22 @@ import { defineConfig as defineViteConfig, mergeConfig } from "vite";
 import solidPlugin from "vite-plugin-solid";
 import { configDefaults, defineConfig as defineVitestConfig } from "vitest/config";
 
-const TEST_EXCLUDES = [...configDefaults.exclude, "src/index.tsx", "playground"];
+const TEST_EXCLUDES = [
+  ...configDefaults.exclude,
+  "src/index.tsx",
+  "playground",
+  "server",
+  "src/testUtils.ts",
+];
 const COVERAGE_EXCLUDE = [...TEST_EXCLUDES, "**/*.test.{ts,tsx}"];
 
 const viteConfig = defineViteConfig({
   plugins: [tailwindcss(), solidPlugin()],
   server: {
     port: 3000,
+    proxy: {
+      "/api": "http://localhost:8000",
+    },
   },
   build: {
     target: "esnext",

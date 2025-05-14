@@ -1,10 +1,10 @@
 {
-  "name": "template-solidjs-library",
+  "name": "@dschz/solid-plaid-link",
   "version": "0.0.0",
   "license": "MIT",
   "exports": "./src/index.tsx",
   "publish": {
-    "include": ["LICENSE", "README.md", "src/**/*.tsx"],
-    "exclude": ["**/*.test.tsx"]
+    "include": ["LICENSE", "README.md", "CHANGELOG.md", "src/**/*.tsx", "src/**/*.ts"],
+    "exclude": ["**/*.test.tsx", "src/testUtils.ts"]
   }
 }

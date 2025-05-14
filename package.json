@@ -1,23 +1,42 @@
 {
-  "name": "template-solidjs-library",
+  "name": "@dschz/solid-plaid-link",
   "version": "0.0.0",
-  "description": "Template for SolidJS library using tsup for bundling. Configured with Bun, NVM, TypeScript, ESLint, Prettier, Vitest, and GHA",
+  "description": "SolidJS wrapper for Plaid Link to seamlessly integrate Plaid into Solid apps.",
   "type": "module",
-  "author": "Daniel Sanchez <dsanc89@icloud.com>",
+  "author": "Daniel Sanchez <dsanc89@pm.me>",
   "license": "MIT",
-  "homepage": "https://github.com/thedanchez/template-solidjs-library#readme",
+  "homepage": "https://github.com/dsnchz/solid-plaid-link#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thedanchez/template-solidjs-library.git"
+    "url": "https://github.com/dsnchz/solid-plaid-link.git"
   },
   "bugs": {
-    "url": "https://github.com/thedanchez/template-solidjs-library/issues"
+    "url": "https://github.com/dsnchz/solid-plaid-link/issues"
   },
   "publishConfig": {
     "access": "public"
   },
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "solid",
+    "solidjs",
+    "solid-js",
+    "plaid",
+    "plaid-link",
+    "plaid embedded",
+    "plaid oauth",
+    "bank linking",
+    "financial api",
+    "fintech",
+    "link-token",
+    "plaid integration",
+    "solidjs plaid",
+    "solidjs finance",
+    "solidjs banking",
+    "createPlaidLink",
+    "PlaidEmbeddedLink"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -44,6 +63,7 @@
     "pkg:publish": "bun run build && changeset publish",
     "serve": "vite preview",
     "start": "vite",
+    "start:server": "bun ./server/index.ts",
     "test": "vitest run",
     "test:cov": "vitest run --coverage",
     "typecheck": "tsc --noEmit"
@@ -53,6 +73,7 @@
     "@solidjs/testing-library": "^0.8.10",
     "@tailwindcss/vite": "^4.1.5",
     "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/user-event": "^14.6.1",
     "@types/bun": "^1.2.12",
     "@typescript-eslint/eslint-plugin": "^8.32.0",
     "@typescript-eslint/parser": "^8.32.0",
@@ -63,6 +84,7 @@
     "globals": "^16.1.0",
     "jiti": "^2.4.2",
     "jsdom": "^26.1.0",
+    "plaid": "^33.0.0",
     "prettier": "^3.5.3",
     "solid-js": "^1.9.6",
     "tailwindcss": "^4.1.5",
@@ -76,5 +98,9 @@
   },
   "peerDependencies": {
     "solid-js": ">=1.6.0"
+  },
+  "dependencies": {
+    "@dschz/solid-create-script": "^1.2.5",
+    "@dschz/try-catch": "^1.1.0"
   }
 }
