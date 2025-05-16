@@ -1,5 +1,11 @@
 # @dschz/solid-plaid-link
 
+## 0.1.2
+
+### Patch Changes
+
+- adds jsdoc comments to all exported types
+
 ## 0.1.1
 
 ### Patch Changes
