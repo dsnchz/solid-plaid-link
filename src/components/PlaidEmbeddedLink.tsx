@@ -55,7 +55,7 @@ export type PlaidEmbeddedLinkProps = CreatePlaidLinkConfig &
  * />
  * ```
  */
-export const PlaidEmbeddedLink = (props: PlaidEmbeddedLinkProps) => {
+export const PlaidEmbeddedLink = (props: PlaidEmbeddedLinkProps): JSX.Element => {
   let container!: HTMLDivElement;
   const script = createScript(PLAID_LINK_STABLE_URL);
 
