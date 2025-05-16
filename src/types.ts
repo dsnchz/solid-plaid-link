@@ -45,6 +45,11 @@ export type PlaidExitStatus =
   | "institution_not_found"
   | "institution_not_supported";
 
+/**
+ * Error object returned from Plaid Link.
+ *
+ * This object is passed to the `onExit` callback and contains information about the error that occurred.
+ */
 export type PlaidLinkError = {
   /** A broad categorization of the error. */
   readonly error_type: string;
@@ -57,6 +62,11 @@ export type PlaidLinkError = {
   readonly display_message: string | null;
 };
 
+/**
+ * Metadata for the Plaid Link `onSuccess` callback.
+ *
+ * This object is passed to the `onSuccess` callback and contains information about the institution and accounts that were linked.
+ */
 export type PlaidLinkOnSuccessMetadata = {
   /** An institution object. If the Item was created via Same-Day micro-deposit verification, will be null. */
   readonly institution: PlaidInstitution | null;
@@ -70,6 +80,11 @@ export type PlaidLinkOnSuccessMetadata = {
   readonly transfer_status: PlaidAccountTransferStatus | null;
 };
 
+/**
+ * Metadata for the Plaid Link `onExit` callback.
+ *
+ * This object is passed to the `onExit` callback and contains information about the institution and status of the Link flow.
+ */
 export type PlaidLinkOnExitMetadata = {
   readonly institution: PlaidInstitution | null;
   // see possible values for status at https://plaid.com/docs/link/web/#link-web-onexit-status
@@ -81,6 +96,11 @@ export type PlaidLinkOnExitMetadata = {
   readonly request_id: string;
 };
 
+/**
+ * Metadata for the Plaid Link `onEvent` callback.
+ *
+ * This object is passed to the `onEvent` callback and contains information about the event that occurred.
+ */
 export type PlaidLinkOnEventMetadata = {
   /** The account number mask extracted from the user-provided account number. If the user-inputted account number is four
    * digits long, account_number_mask is empty. Emitted by `SUBMIT_ACCOUNT_NUMBER`. */
@@ -128,7 +148,9 @@ export type PlaidLinkOnEventMetadata = {
   readonly selection: string | null;
 };
 
-// The following event names are stable and will not be deprecated or changed
+/**
+ * A stable set of known event names Plaid Link may emit.
+ */
 export type PlaidLinkStableEvent =
   | "OPEN"
   | "EXIT"
@@ -153,6 +175,9 @@ export type PlaidCreateLinkToken = {
   readonly request_id?: string;
 };
 
+/**
+ * Function that returns a promise resolving to a `PlaidCreateLinkToken`.
+ */
 export type PlaidLinkTokenFetcher = () => Promise<PlaidCreateLinkToken>;
 
 export type PlaidLinkOnEvent = (
@@ -188,6 +213,10 @@ export type PlaidCallbacks = {
   readonly onLoad?: () => void;
 };
 
+/**
+ * Options to control Plaid Link token caching behavior.
+ * Used internally by `createPlaidLink` and `<PlaidEmbeddedLink />` when caching is enabled.
+ */
 export type CreatePlaidLinkCacheOptions = {
   /** Storage to use for caching. Defaults to sessionStorage. */
   readonly storage?: Storage;
@@ -247,6 +276,9 @@ export type CreatePlaidLinkErrorKind =
   | "plaid_unavailable"
   | "missing_token_data";
 
+/**
+ * Structured error returned from `createPlaidLink` or `<PlaidEmbeddedLink />`.
+ */
 export type CreatePlaidLinkError = {
   readonly kind: CreatePlaidLinkErrorKind;
   readonly message: string;
