@@ -11,7 +11,7 @@ import {
 import { PLAID_LINK_PROPS, PLAID_LINK_STABLE_URL } from "../constants";
 import { PlaidTokenFetchError, PlaidUnavailableError } from "../errors";
 import { PlaidScriptLoadError } from "../errors";
-import type { CreatePlaidLinkConfig, CreatePlaidLinkError } from "../types";
+import type { CreatePlaidLinkConfig, CreatePlaidLinkError, Plaid } from "../types";
 import { createCachedPlaidTokenFetcher } from "../utils/createCachedPlaidTokenFetcher";
 import { scheduleLinkTokenRefresh } from "../utils/scheduleLinkTokenRefresh";
 
@@ -82,7 +82,7 @@ export const PlaidEmbeddedLink = (props: PlaidEmbeddedLinkProps): JSX.Element =>
       };
     }
 
-    if (!window.Plaid) {
+    if (!("Plaid" in window) || !window.Plaid) {
       return {
         kind: "plaid_unavailable",
         message: "PlaidUnavailableError: Plaid is not available in the global window object.",
@@ -108,18 +108,19 @@ export const PlaidEmbeddedLink = (props: PlaidEmbeddedLinkProps): JSX.Element =>
   });
 
   createEffect(() => {
-    if (script.loading || tokenRequest.loading || !window.Plaid || script.error) return;
-    if (tokenRequest.state === "unresolved" || tokenRequest.state === "errored") return;
+    const loading = script.loading || tokenRequest.loading;
+    const error = script.error || tokenRequest.error || tokenRequest.state === "unresolved";
+
+    if (loading || error || !("Plaid" in window) || !window.Plaid) return;
 
     const { link_token, expiration } = tokenRequest();
+
+    const Plaid = window.Plaid as Plaid;
 
     // The embedded Link interface doesn't use the `createPlaidLink` hook to manage
     // its Plaid Link instance because the embedded Link integration in link-initialize
     // maintains its own handler internally.
-    const { destroy } = window.Plaid.createEmbedded(
-      { ...plaidConfig, token: link_token },
-      container,
-    );
+    const { destroy } = Plaid.createEmbedded({ ...plaidConfig, token: link_token }, container);
 
     const timerId = scheduleLinkTokenRefresh(refetch, expiration);
 

@@ -7,7 +7,7 @@ export class PlaidScriptLoadError extends Error {
 
 export class PlaidUnavailableError extends Error {
   constructor() {
-    super("PlaidUnavailableError:Plaid is not available in the global window object.");
+    super("PlaidUnavailableError: Plaid is not available in the global window object.");
     this.name = "PlaidUnavailableError";
   }
 }

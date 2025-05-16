@@ -33,10 +33,14 @@ describe("COMPONENT: <PlaidEmbeddedLink />", () => {
       };
     });
 
-    window.Plaid = {
-      createEmbedded: createEmbeddedSpy,
-      create: vi.fn(),
-    };
+    Object.defineProperty(window, "Plaid", {
+      value: {
+        createEmbedded: createEmbeddedSpy,
+        create: vi.fn(),
+      } as Plaid,
+      writable: true,
+      configurable: true,
+    });
   });
 
   afterEach(() => {
@@ -178,7 +182,8 @@ describe("COMPONENT: <PlaidEmbeddedLink />", () => {
 
   test("does not create embedded Plaid instance when Plaid is not available in global window", async () => {
     const mockStorage = createMockStorage();
-    // @ts-expect-error - This is a test
+
+    // @ts-expect-error - nulling out Plaid in window
     window.Plaid = undefined;
 
     const onErrorSpy = vi.fn();
@@ -192,7 +197,9 @@ describe("COMPONENT: <PlaidEmbeddedLink />", () => {
 
     render(() => (
       <PlaidEmbeddedLink
-        fetchToken={() => Promise.resolve({ link_token: TEST_TOKEN, expiration: "" })}
+        fetchToken={() =>
+          Promise.resolve({ link_token: TEST_TOKEN, expiration: getFuturePlaidExpiration() })
+        }
         onSuccess={vi.fn()}
         onError={onErrorSpy}
         cacheOptions={{

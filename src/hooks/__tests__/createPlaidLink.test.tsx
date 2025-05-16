@@ -4,7 +4,7 @@ import { createRoot } from "solid-js";
 import { afterEach, beforeEach, describe, expect, type MockedFunction, test, vi } from "vitest";
 
 import { createFakeResource, createMockStorage, getFuturePlaidExpiration } from "../../testUtils";
-import type { PlaidHandler } from "../../types";
+import type { Plaid, PlaidHandler } from "../../types";
 import { createPlaidLink } from "../createPlaidLink";
 
 vi.mock("@dschz/solid-create-script");
@@ -23,13 +23,17 @@ describe("HOOK: createPlaidLink", () => {
       destroy: vi.fn(),
     };
 
-    window.Plaid = {
-      createEmbedded: vi.fn(),
-      create: ({ onLoad }) => {
-        onLoad?.();
-        return mockPlaidHandler;
-      },
-    };
+    Object.defineProperty(window, "Plaid", {
+      value: {
+        createEmbedded: vi.fn(),
+        create: ({ onLoad }) => {
+          onLoad?.();
+          return mockPlaidHandler;
+        },
+      } as Plaid,
+      writable: true,
+      configurable: true,
+    });
   });
 
   afterEach(() => {
@@ -195,7 +199,8 @@ describe("HOOK: createPlaidLink", () => {
 
   test("is not ready when Plaid is not available in global window", async () => {
     const mockStorage = createMockStorage();
-    // @ts-expect-error - This is a test
+
+    // @ts-expect-error - nulling out Plaid in window
     window.Plaid = undefined;
 
     mockCreateScript.mockImplementationOnce(() =>

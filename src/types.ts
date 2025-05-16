@@ -285,9 +285,3 @@ export type Plaid = {
     domTarget: HTMLElement,
   ) => PlaidEmbeddedHandler;
 };
-
-declare global {
-  interface Window {
-    Plaid: Plaid;
-  }
-}

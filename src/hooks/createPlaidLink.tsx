@@ -10,7 +10,12 @@ import {
 
 import { PLAID_LINK_STABLE_URL } from "../constants";
 import { PlaidScriptLoadError, PlaidTokenFetchError, PlaidUnavailableError } from "../errors";
-import type { CreatePlaidLinkConfig, CreatePlaidLinkError, PlaidLinkHandler } from "../types";
+import type {
+  CreatePlaidLinkConfig,
+  CreatePlaidLinkError,
+  Plaid,
+  PlaidLinkHandler,
+} from "../types";
 import { createCachedPlaidTokenFetcher } from "../utils/createCachedPlaidTokenFetcher";
 import { scheduleLinkTokenRefresh } from "../utils/scheduleLinkTokenRefresh";
 
@@ -109,7 +114,7 @@ export const createPlaidLink = (
       };
     }
 
-    if (!window.Plaid) {
+    if (!("Plaid" in window) || !window.Plaid) {
       return {
         kind: "plaid_unavailable",
         message: "PlaidUnavailableError: Plaid is not available in the global window object.",
@@ -131,12 +136,16 @@ export const createPlaidLink = (
   createEffect(() => {
     setReady(false);
 
-    if (script.loading || tokenRequest.loading || script.error || !window.Plaid) return;
-    if (tokenRequest.state === "unresolved" || tokenRequest.state === "errored") return;
+    const loading = script.loading || tokenRequest.loading;
+    const error = script.error || tokenRequest.error || tokenRequest.state === "unresolved";
+
+    if (loading || error || !("Plaid" in window) || !window.Plaid) return;
 
     const { link_token, expiration } = tokenRequest();
 
-    const plaidHandler = window.Plaid.create({
+    const Plaid = window.Plaid as Plaid;
+
+    const plaidHandler = Plaid.create({
       ...plaidConfig,
       token: link_token,
       onLoad: () => {
