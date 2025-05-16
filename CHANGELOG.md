@@ -1,5 +1,11 @@
 # @dschz/solid-plaid-link
 
+## 0.1.3
+
+### Patch Changes
+
+- minor readme update
+
 ## 0.1.2
 
 ### Patch Changes
