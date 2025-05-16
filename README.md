@@ -46,9 +46,9 @@ return (
 
 > 💡 You can pair `createPlaidLink` with any UI library of your choice (e.g., Kobalte, Ark UI, Solid UI, Tailwind, etc.) to build a fully custom button that triggers Plaid Link.
 
-## 🖼️ `<PlaidEmbeddedLink />`
+## 🖼️ `PlaidEmbeddedLink`
 
-Use this when you want to embed the Link experience directly into the page via `Plaid.createEmbedded`.
+Use this JSX component when you want to embed the Link experience directly into the page via `Plaid.createEmbedded`.
 
 ```tsx
 import { PlaidEmbeddedLink } from "@dschz/solid-plaid-link";
