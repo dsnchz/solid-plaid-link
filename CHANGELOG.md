@@ -1,5 +1,12 @@
 # @dschz/solid-plaid-link
 
+## 0.1.1
+
+### Patch Changes
+
+- adds return type to EmbeddedLink to comply with JSR publish
+- removes global window declaration to comply with JSR publish
+
 ## 0.1.0
 
 ### 🚀 Initial Release
