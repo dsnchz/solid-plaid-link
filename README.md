@@ -2,10 +2,13 @@
   <img width="100%" src="https://assets.solidjs.com/banner?type=Ecosystem&background=tiles&project=solid-plaid-link" alt="solid-plaid-link">
 </p>
 
-[![NPM Version](https://img.shields.io/npm/v/@dschz/solid-plaid-link.svg?style=for-the-badge)](https://www.npmjs.com/package/@dschz/solid-plaid-link)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/dsnchz/solid-plaid-link/ci.yaml?branch=main&logo=github&style=for-the-badge)](https://github.com/dsnchz/solid-plaid-link/actions/workflows/ci.yaml)
+# @dschz/solid-plaid-link
 
-# `@dschz/solid-plaid-link`
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/@dschz/solid-plaid-link?color=blue)](https://www.npmjs.com/package/@dschz/solid-plaid-link)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/@dschz/solid-uplot)](https://bundlephobia.com/package/@dschz/solid-plaid-link)
+[![CI](https://github.com/dsnchz/solid-plaid-link/actions/workflows/ci.yaml/badge.svg)](https://github.com/dsnchz/solid-plaid-link/actions/workflows/ci.yaml)
+[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?logo=discord&logoColor=white)](https://discord.gg/McSuU38GHg)
 
 SolidJS library for integrating with [Plaid Link](https://plaid.com/docs/link/). Dynamically loads the Link script, manages token expiration, supports OAuth redirects, and caches tokens safely across reloads.
 
