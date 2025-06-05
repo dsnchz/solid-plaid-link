@@ -1,5 +1,11 @@
 # @dschz/solid-plaid-link
 
+## 0.1.5
+
+### Patch Changes
+
+- Adds JSR score badge to readme
+
 ## 0.1.4
 
 ### Patch Changes
