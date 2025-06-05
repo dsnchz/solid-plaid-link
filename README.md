@@ -5,8 +5,9 @@
 # @dschz/solid-plaid-link
 
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![npm version](https://img.shields.io/npm/v/@dschz/solid-plaid-link?color=blue)](https://www.npmjs.com/package/@dschz/solid-plaid-link)
+[![npm](https://img.shields.io/npm/v/@dschz/solid-plaid-link?color=blue)](https://www.npmjs.com/package/@dschz/solid-plaid-link)
 [![Bundle Size](https://img.shields.io/bundlephobia/minzip/@dschz/solid-uplot)](https://bundlephobia.com/package/@dschz/solid-plaid-link)
+[![JSR](https://jsr.io/badges/@dschz/solid-plaid-link/score)](https://jsr.io/@dschz/solid-plaid-link)
 [![CI](https://github.com/dsnchz/solid-plaid-link/actions/workflows/ci.yaml/badge.svg)](https://github.com/dsnchz/solid-plaid-link/actions/workflows/ci.yaml)
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?logo=discord&logoColor=white)](https://discord.gg/McSuU38GHg)
 
